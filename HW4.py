@@ -1,14 +1,34 @@
-# #constants
-# N = 10
-# k = 1
-# L = 1
-# U0 = 1
-# v = 1
-# A = 1
-# h = L/(N+1)
+#constants
+N = 10
+k = 1
+L = 1
+U0 = 1
+v = 1
+A = 1
+h = L/(N+1)
 
 
 
+A = [[1, 4, 5], 
+    [-5, 8, 9],
+    [1, 2, 3]]
+
+def triAlgorithm():
+    α[1] = a[1] 
+    g[1] = f[1]
+
+    for j in range(2,N):
+        print(j)
+        α[j] =a[j]− (b[j]/α[j−1])*c[j−1] 
+        g[j] =f[j]− (b[j]/α[j−1])*g[j−1] 
+    
+    u[N] =g[N]/α[N] 
+
+    for k in range(1,N-1)
+        u[N−k] = (g[N−k]−c[N−k]*u[N−k+1]) / α[N−k]
+    
+
+triAlgorithm()
 
 
 
