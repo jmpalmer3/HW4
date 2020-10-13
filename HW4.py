@@ -1,3 +1,5 @@
+import numpy as np 
+
 #constants
 N = 10
 k = 1
@@ -6,29 +8,68 @@ U0 = 1
 v = 1
 A = 1
 h = L/(N+1)
+f = A
+
+# arr = np.array([1])
+# arr = np.append(arr,2)
+# print(arr)
 
 
-
-A = [[1, 4, 5], 
+matrix = [[1, 4, 5], 
     [-5, 8, 9],
     [1, 2, 3]]
 
 def triAlgorithm():
-    α[1] = a[1] 
-    g[1] = f[1]
+    α = np.array([matrix[0][0]])
+    g = np.array([f])
 
-    for j in range(2,N):
-        print(j)
-        α[j] =a[j]− (b[j]/α[j−1])*c[j−1] 
-        g[j] =f[j]− (b[j]/α[j−1])*g[j−1] 
+    # for j in range(1,N):
+          α = np.append(α, matrix[j][j] - (matrix[j][j-1]/matrix[j-1][j-1])*matrix[j-1][j] )
+    #     α[j] =a[j]− (b[j]/α[j−1])*c[j−1] 
+    #     g[j] =f[j]− (b[j]/α[j−1])*g[j−1] 
     
-    u[N] =g[N]/α[N] 
+    # u[N] =g[N]/α[N] 
 
-    for k in range(1,N-1)
-        u[N−k] = (g[N−k]−c[N−k]*u[N−k+1]) / α[N−k]
+    # for k in range(1,N-1)
+    #     u[N−k] = (g[N−k]−c[N−k]*u[N−k+1]) / α[N−k]
     
 
 triAlgorithm()
+
+
+
+
+
+
+
+
+
+
+
+# def triAlgorithm():
+#     α[1] = a[1] 
+#     g[1] = f[1]
+
+#     for j in range(2,N):
+#         print(j)
+#         α[j] =a[j]− (b[j]/α[j−1])*c[j−1] 
+#         g[j] =f[j]− (b[j]/α[j−1])*g[j−1] 
+    
+#     u[N] =g[N]/α[N] 
+
+#     for k in range(1,N-1)
+#         u[N−k] = (g[N−k]−c[N−k]*u[N−k+1]) / α[N−k]
+    
+
+# triAlgorithm()
+
+
+
+
+
+
+
+
 
 
 
