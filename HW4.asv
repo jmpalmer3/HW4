@@ -43,33 +43,26 @@ h = L/(N+1);
 Plot1 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
 Plot2 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
 
-k = 10
-Plot3 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
-Plot4 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
-
 % Plot functions
 subplot(1,2,1);
 fplot(Plot1);
 hold on
 fplot(Plot2);
 
-% Format plot
-xlabel('Variable [x]')
-ylabel('Function [y]')
-title('Test Plot')
-axis([-8,10,-1,10])
-grid on
 
-% Plot second K values
 subplot(1,2,2);
+k = 10
+Plot3 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
+Plot4 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
 fplot(Plot3)
 hold on
 fplot(Plot4)
+hold on
 
 
 % Format plot
 xlabel('Variable [x]')
 ylabel('Function [y]')
 title('Test Plot')
-axis([-8,10,-1,10])
+axis([-8,10,-10,10])
 grid on
