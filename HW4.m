@@ -17,25 +17,24 @@ U0 = 1;
 v = 1;
 A = 1;
 h = L/(N+1);
-f = A;
-
+%f = A;
 
 matrix = [3 -1 0; -1 3 -1; 0 -1 3];
-f = [-1 7 7]
+f = [-1 7 7];
 
 % function u = triAlgorithm(matrix)
     alpha(1) = matrix(1);
     g(1) = f(1);
 
     for j = 2:N
-        alpha(j) = matrix(j,j)-(matrix(j,j-1)/matrix(j-1,j-1))*matrix(j-1,j);
-        g(j) = f(j) - (matrix(j,j-1)/matrix(j-1,j-1))*g(j-1);
+        alpha(j) = matrix(j,j)-(matrix(j,j-1)/alpha(j-1))*matrix(j-1,j);
+        g(j) = f(j) - (matrix(j,j-1)/alpha(j-1))*g(j-1);
     end
     
      u(N) = g(N)/alpha(N); 
 
     for k = 1:N-1
-        u(N-k) = (g(N-k)-matrix(N-k,N-k+1)*u(N-k+1)) / alpha(N-k)
+        u(N-k) = (g(N-k)-matrix(N-k,N-k+1)*u(N-k+1)) / alpha(N-k);
     end 
 % end
 %     
