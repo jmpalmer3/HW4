@@ -10,29 +10,33 @@ clear
 close all
 
 % Set variables to use for constants
-N = 10;
+N = 3;
 k = 1;
 L = 1;
 U0 = 1;
 v = 1;
 A = 1;
 h = L/(N+1);
+f = A;
 
-% function u = triAlgorithm()
-%     α[1] = a[1] 
-%     g[1] = f[1]
-% 
-%     for j = 2:N
-%         print(j)
-%         α[j] =a[j]− (b[j]/α[j−1])*c[j−1] 
-%         g[j] =f[j]− (b[j]/α[j−1])*g[j−1] 
-%     end
-%     
-%     u[N] =g[N]/α[N] 
-% 
-%     for k = 1:N-1
-%         u[N−k] = (g[N−k]−c[N−k]*u[N−k+1]) / α[N−k]
-%     end 
+
+matrix = [3 -1 0; -1 3 -1; 0 -1 3];
+f = [-1 7 7]
+
+% function u = triAlgorithm(matrix)
+    alpha(1) = matrix(1);
+    g(1) = f(1);
+
+    for j = 2:N
+        alpha(j) = matrix(j,j)-(matrix(j,j-1)/matrix(j-1,j-1))*matrix(j-1,j);
+        g(j) = f(j) - (matrix(j,j-1)/matrix(j-1,j-1))*g(j-1);
+    end
+    
+     u(N) = g(N)/alpha(N); 
+
+    for k = 1:N-1
+        u(N-k) = (g(N-k)-matrix(N-k,N-k+1)*u(N-k+1)) / alpha(N-k)
+    end 
 % end
 %     
 % 
@@ -43,7 +47,7 @@ h = L/(N+1);
 Plot1 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
 Plot2 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
 
-k = 10
+k = 10;
 Plot3 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
 Plot4 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
 
