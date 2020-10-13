@@ -11,7 +11,7 @@ close all
 
 % Set variables to use for constants
 N = 10;
-k = 1;
+k = 10;
 L = 1;
 U0 = 1;
 v = 1;
@@ -19,28 +19,27 @@ A = 1;
 h = L/(N+1);
 f = A;
 
-% setup for calculated matrix values
-a = (-(2+(k^2)*(h^2)))*ones(1,N);
-b = 1*ones(1,N-1);
-c = 1*ones(1,N-1);
-f = (h^2*f)*ones(1,N);
-f(1) = f(1)-U0;
 
+
+[a, b, c, f, N] = setup(N, U0, A, L, k);
 
 % call algorithm function with input values
 u = triAlgorithm(a, b, c, f, N);
 
-% Make plots based of of chosen values
+
+
+
+%% Plotting 
+
+%Make plots based of of chosen values
 Plot1 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
 Plot2 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
 
-% k = 10;
-% Plot3 = @(x) (((sinh(k*(L-x))+sinh(k*x))/sinh(k*L))-1)*(A/k^2) + U0*((sinh(k*(L-x)))/sinh(k*L));
-% Plot4 = @(x) ((cosh(k*x)/cosh(k*L))-1)*(A/k^2) + U0*(sinh(k*(L-x))/sinh(k*L));
-
 x = (1:length(u))/N;
 
-% Plot functions
+
+
+%% Plot 1
 subplot(2,2,1);
 fplot(Plot1);
 hold on
@@ -49,27 +48,16 @@ plot(x,u)
 % Format plot
 xlabel('Length [x]')
 ylabel('Function [u]')
-title('Dirichlet type [N=10,k=1]')
+title(['Dirichlet type [N=10,k=',num2str(k),']'])
 axis([0,1,-1,2])
 legend('Theoretical','Computed')
 grid on
 
-
-
-
-
-
+%% Plot 2
 
 % setup for calculated matrix values
-f=A;
 N=20;
-h = L/(N+1);
-a = (-(2+(k^2)*(h^2)))*ones(1,N);
-b = 1*ones(1,N-1);
-c = 1*ones(1,N-1);
-f = (h^2*f)*ones(1,N);
-f(1) = f(1)-U0;
-
+[a, b, c, f, N] = setup(N, U0, A, L, k);
 u = triAlgorithm(a, b, c, f, N);
 x = (1:length(u))/N;
 
@@ -81,23 +69,16 @@ plot(x,u)
 % Format plot
 xlabel('Length [x]')
 ylabel('Function [u]')
-title('Dirichlet type [N=20,k=1]')
+title(['Dirichlet type [N=20,k=',num2str(k),']'])
 axis([0,1,-1,2])
 legend('Theoretical','Computed')
 grid on
 
+%% Plot 3
 
-
-% setup for calculated matrix values
-f=A;
-N=40;
-h = L/(N+1);
-a = (-(2+(k^2)*(h^2)))*ones(1,N);
-b = 1*ones(1,N-1);
-c = 1*ones(1,N-1);
-f = (h^2*f)*ones(1,N);
-f(1) = f(1)-U0;
-
+% setup for calculated matrix values with new N value
+N = 40;
+[a, b, c, f, N] = setup(N, U0, A, L, k);
 u = triAlgorithm(a, b, c, f, N);
 x = (1:length(u))/N;
 
@@ -109,24 +90,17 @@ plot(x,u)
 % Format plot
 xlabel('Length [x]')
 ylabel('Function [u]')
-title('Dirichlet type [N=40,k=1]')
+title(['Dirichlet type [N=40,k=',num2str(k),']'])
 axis([0,1,-1,2])
 legend('Theoretical','Computed')
 grid on
 
 
+%% Plot 4
 
-
-% setup for calculated matrix values
-f=A;
-N=80;
-h = L/(N+1);
-a = (-(2+(k^2)*(h^2)))*ones(1,N);
-b = 1*ones(1,N-1);
-c = 1*ones(1,N-1);
-f = (h^2*f)*ones(1,N);
-f(1) = f(1)-U0;
-
+% setup for calculated matrix values with new N value
+N = 80;
+[a, b, c, f, N] = setup(N, U0, A, L, k);
 u = triAlgorithm(a, b, c, f, N);
 x = (1:length(u))/N;
 
@@ -138,24 +112,9 @@ plot(x,u)
 % Format plot
 xlabel('Length [x]')
 ylabel('Function [u]')
-title('Dirichlet type [N=80,k=1]')
+title(['Dirichlet type [N=80,k=',num2str(k),']'])
 axis([0,1,-1,2])
 legend('Theoretical','Computed')
 grid on
 
-
-
-
-% % Plot second K values
-% subplot(1,2,2);
-% fplot(Plot3)
-% hold on
-% fplot(Plot4)
-
-% % Format plot
-% xlabel('Variable [x]')
-% ylabel('Function [y]')
-% title('Test Plot')
-% axis([0,1,-1,2])
-% grid on
 
