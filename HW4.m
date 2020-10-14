@@ -11,7 +11,7 @@ close all
 
 % Set variables to use for constants
 N = 10;
-k = 10;
+k = 1;
 L = 1;
 U0 = 1;
 v = 1;
@@ -58,7 +58,7 @@ grid on
 % setup for calculated matrix values
 N=2*N;
 [a, b, c, f, N] = setupNeumann(N, v, A, L, k);
-u = triAlgorithm(a, b, c, f, N);
+u = triAlgorithm(a, b, c, f, N)
 x = (1:length(u))/N;
 
 subplot(2,2,2);
